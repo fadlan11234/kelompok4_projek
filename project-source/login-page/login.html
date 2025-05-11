@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Jawa Cafe</title>
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">Jawa Cafe</div>
+      <div class="nav-links" id="menu">
+        <a href="../landing-page/landing-page.html">Home</a>
+        <a href="../login-page/login.html">Login</a>
+        <a href="../registrasi-page/register.html">Register</a>
+      </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="login-container">
+      <h2>Login ke Akun Anda</h2>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+
+        <button type="submit">Login</button>
+      </form>
+      <p>Belum punya akun? <a href="../registrasi-page/register.html">Daftar di sini</a>.</p>
+    </div>
+
+    <script src="js/login.js" defer></script>
+  </body>
+</html>

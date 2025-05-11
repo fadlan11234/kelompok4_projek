@@ -1,0 +1,158 @@
+/* Reset & Dasar */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff8f0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4b2e2e;
+  padding: 1rem 1.5rem;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  background-image: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #6f4e37;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.barista {
+  margin-top: 50px;
+  animation: wave 2s infinite;
+}
+
+.barista-img {
+  width: 180px;
+  max-width: 80%;
+  animation: wave-hand 2s infinite;
+}
+/* Styling untuk section rasa kopi */
+.coffee-flavor {
+    background-color: #f4f4f4;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .coffee-flavor h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .coffee-flavor p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .coffee-option {
+    margin-bottom: 15px;
+  }
+  
+  .coffee-btn {
+    background-color: #5c4033;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  
+  .coffee-btn:hover {
+    background-color: #402020;
+  }
+  
+  .coffee-description {
+    display: none;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+  
+
+/* Wave animation */
+@keyframes wave-hand {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

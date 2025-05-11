@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jawa Cafe - Landing Page</title>
+    <link rel="stylesheet" href="./landing.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">Jawa Cafe</div>
+      <div class="nav-links" id="menu">
+        <a href="../landing-page/landing-page.html">Home</a>
+        <a href="../login-page/login.html">Login</a>
+        <a href="../registrasi-page/register.html">Register</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Selamat Datang di Jawa Cafe</h1>
+        <p>Nikmati aroma dan cita rasa kopi terbaik dari kami</p>
+        <a href="../login-page/login.html" class="cta-btn">Pesan Sekarang</a>
+      </div>
+      <div class="barista">
+        <img src="../img/barista.png" alt="Barista" class="barista-img" />
+      </div>
+    </section>
+
+    <!-- Rasa Kopi Section -->
+    <section class="coffee-flavor">
+      <div class="coffee-flavor-content">
+        <h2>Rasa Kopi Kami</h2>
+        <p>Klik pada jenis kopi untuk melihat penjelasan rasa kopi kami.</p>
+
+        <!-- Coffee Options -->
+        <div class="coffee-option">
+          <button class="coffee-btn" onclick="toggleDescription('americano')">
+            Americano
+          </button>
+          <div id="americano" class="coffee-description">
+            <p>
+              Americano memiliki rasa yang kuat, namun lembut di lidah dengan
+              sentuhan asam yang pas.
+            </p>
+          </div>
+        </div>
+
+        <div class="coffee-option">
+          <button class="coffee-btn" onclick="toggleDescription('arabika')">
+            Arabika
+          </button>
+          <div id="arabika" class="coffee-description">
+            <p>
+              Arabika menawarkan rasa yang lebih lembut dengan keasaman yang
+              khas dan aroma yang kuat.
+            </p>
+          </div>
+        </div>
+
+        <div class="coffee-option">
+          <button class="coffee-btn" onclick="toggleDescription('robusta')">
+            Robusta
+          </button>
+          <div id="robusta" class="coffee-description">
+            <p>
+              Robusta memiliki rasa lebih kuat dan pahit, dengan kandungan
+              kafein yang lebih tinggi.
+            </p>
+          </div>
+        </div>
+
+        <div class="coffee-option">
+          <button class="coffee-btn" onclick="toggleDescription('liberica')">
+            Liberica
+          </button>
+          <div id="liberica" class="coffee-description">
+            <p>
+              Liberica memiliki rasa unik dengan campuran sedikit manis dan
+              smoky yang khas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section - Hak Cipta -->
+    <footer class="footer">
+      <p>&copy; 2025 Jawa Cafe. Semua hak cipta dilindungi.</p>
+    </footer>
+
+    <script src="./landing-page.js"></script>
+  </body>
+</html>
