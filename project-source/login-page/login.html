@@ -20,7 +20,7 @@
     <!-- Login Form -->
     <div class="login-container">
       <h2>Login ke Akun Anda</h2>
-      <form id="loginForm">
+      <form id="loginForm" onsubmit="redirectToDashboard(event)">
         <label for="username">Username:</label>
         <input type="text" id="username" required />
 
@@ -29,9 +29,18 @@
 
         <button type="submit">Login</button>
       </form>
-      <p>Belum punya akun? <a href="../registrasi-page/register.html">Daftar di sini</a>.</p>
+      <p>
+        Belum punya akun?
+        <a href="../registrasi-page/register.html">Daftar di sini</a>.
+      </p>
     </div>
 
-    <script src="js/login.js" defer></script>
+    <!-- Script langsung di sini untuk redirect -->
+    <script>
+      function redirectToDashboard(event) {
+        event.preventDefault(); // cegah form reload
+        window.location.href = "../dashboard/dashboard.html";
+      }
+    </script>
   </body>
 </html>
