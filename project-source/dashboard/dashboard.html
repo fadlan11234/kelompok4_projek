@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - Jawa Cafe</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f0e6;
+        color: #333;
+      }
+
+      nav {
+        background: #6b4f36;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        position: relative;
+      }
+
+      .logo {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .menu-toggle {
+        font-size: 28px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .menu {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 60px;
+        background: #6b4f36;
+        border-radius: 8px;
+        padding: 10px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        min-width: 140px;
+      }
+
+      .menu.show {
+        display: block;
+      }
+
+      .menu a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 0 0 8px 8px;
+        transition: background-color 0.3s;
+      }
+
+      .menu a:hover {
+        background-color: #8b6548;
+      }
+
+      h2 {
+        text-align: center;
+        color: #6b4f36;
+        margin: 30px 0 20px;
+        font-weight: 600;
+      }
+
+      .produk-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 20px;
+        padding: 0 20px 40px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .produk {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.2s ease;
+        text-decoration: none;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .produk:hover {
+        transform: scale(1.05);
+      }
+
+      .produk img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .produk p {
+        margin: 10px 0 5px;
+        font-size: 14px;
+      }
+
+      .produk .harga {
+        color: #6b4f36;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Jawa Cafe</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="menu" id="dropdownMenu">
+        <a href="../dashboard/dashboard.html">Home</a>
+        <a href="../profil/profil.html">Profil</a>
+      </div>
+    </nav>
+
+    <h2>Menu Kopi Kami</h2>
+
+    <div class="produk-container">
+      <a
+        href="../pembayaran/pembayaran.html?produk=Espresso&harga=18000"
+        class="produk"
+      >
+        <img src="../img/Donna Jos Sia.jpeg" alt="Espresso" />
+        <p>Espresso</p>
+        <p class="harga">Rp18.000</p>
+      </a>
+
+      <a
+        href="../pembayaran/pembayaran.html?produk=Americano&harga=20000"
+        class="produk"
+      >
+        <img
+          src="../img/aes ; marauders _ sirius black _ padfoot _ ♡.jpeg"
+          alt="Americano"
+        />
+        <p>Americano</p>
+        <p class="harga">Rp20.000</p>
+      </a>
+
+      <a
+        href="../pembayaran/pembayaran.html?produk=Cappuccino&harga=22000"
+        class="produk"
+      >
+        <img src="../img/download (2).jpeg" alt="Cappuccino" />
+        <p>Cappuccino</p>
+        <p class="harga">Rp22.000</p>
+      </a>
+
+      <a
+        href="../pembayaran/pembayaran.html?produk=Latte&harga=23000"
+        class="produk"
+      >
+        <img
+          src="../img/Holiday Spiced Café Au Lait - The Local Palate.jpeg"
+          alt="Latte"
+        />
+        <p>Latte</p>
+        <p class="harga">Rp23.000</p>
+      </a>
+
+      <a
+        href="../pembayaran/pembayaran.html?produk=Mocha&harga=25000"
+        class="produk"
+      >
+        <img src="../img/download (3).jpeg" alt="Mocha" />
+        <p>Mocha</p>
+        <p class="harga">Rp25.000</p>
+      </a>
+
+      <a
+        href="../pembayaran/pembayaran.html?produk=Kopi%20Tubruk&harga=15000"
+        class="produk"
+      >
+        <img
+          src="../img/Beans Photos - Download Free High-Quality Pictures _ Freepik.jpeg"
+          alt="Kopi Tubruk"
+        />
+        <p>Kopi Tubruk</p>
+        <p class="harga">Rp15.000</p>
+      </a>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("dropdownMenu").classList.toggle("show");
+      }
+
+      window.addEventListener("click", function (e) {
+        const menu = document.getElementById("dropdownMenu");
+        const toggle = document.querySelector(".menu-toggle");
+        if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>

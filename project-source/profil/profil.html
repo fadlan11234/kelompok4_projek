@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profil - Jawa Cafe</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background: #f5f0e6;
+      }
+
+      nav {
+        background: #6b4f36;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        position: relative;
+      }
+
+      .logo {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .menu-toggle {
+        font-size: 28px;
+        cursor: pointer;
+      }
+
+      .menu {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 60px;
+        background: #6b4f36;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .menu.show {
+        display: block;
+      }
+
+      .menu a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 8px 10px;
+        border-radius: 5px;
+      }
+
+      .menu a:hover {
+        background-color: #8b6548;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color: #333;
+      }
+
+      .container h2 {
+        text-align: center;
+        color: #6b4f36;
+        margin-bottom: 20px;
+      }
+
+      .info {
+        margin: 10px 0;
+      }
+
+      .info label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .info p {
+        margin: 0;
+        background: #f0e8de;
+        padding: 8px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Jawa Cafe</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="menu" id="dropdownMenu">
+        <a href="../dashboard/dashboard.html">Home</a>
+        <a href="../profil/profil.html">Profil</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Profil Pengguna</h2>
+      <div class="info">
+        <label>Nama Lengkap</label>
+        <p>Andika</p>
+      </div>
+      <div class="info">
+        <label>No. Telepon</label>
+        <p>081234567890</p>
+      </div>
+      <div class="info">
+        <label>Email</label>
+        <p>fdlnnaul11@gmail.com</p>
+      </div>
+      <div class="info">
+        <label>Berlangganan sejak</label>
+        <p>2023</p>
+      </div>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("dropdownMenu").classList.toggle("show");
+      }
+
+      window.addEventListener("click", function (e) {
+        const menu = document.getElementById("dropdownMenu");
+        const toggle = document.querySelector(".menu-toggle");
+        if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>
