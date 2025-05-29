@@ -2,196 +2,879 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Jawa Cafe</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-      body {
+      :root {
+        --primary: #6b4f36;
+        --primary-light: #8b6548;
+        --primary-dark: #4d3826;
+        --secondary: #f5f0e6;
+        --accent: #d4a762;
+        --text: #333333;
+        --text-light: #666666;
+        --white: #ffffff;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      * {
         margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f0e6;
-        color: #333;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--secondary);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
       }
 
       nav {
-        background: #6b4f36;
-        color: white;
+        background: var(--primary);
+        color: var(--white);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px 20px;
-        position: relative;
+        padding: 16px 5%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
       }
 
       .logo {
-        font-weight: bold;
-        font-size: 20px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .logo i {
+        color: var(--accent);
       }
 
       .menu-toggle {
-        font-size: 28px;
+        font-size: 1.25rem;
         cursor: pointer;
         user-select: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: var(--transition);
+      }
+
+      .menu-toggle:hover {
+        opacity: 0.9;
+      }
+
+      .profile-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .profile-icon:hover {
+        transform: scale(1.05);
       }
 
       .menu {
         display: none;
         position: absolute;
-        right: 20px;
-        top: 60px;
-        background: #6b4f36;
-        border-radius: 8px;
-        padding: 10px 0;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        min-width: 140px;
+        right: 5%;
+        top: 70px;
+        background: var(--white);
+        border-radius: 12px;
+        padding: 8px 0;
+        box-shadow: var(--shadow-lg);
+        min-width: 180px;
+        z-index: 100;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: var(--transition);
       }
 
       .menu.show {
         display: block;
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .menu a {
-        display: block;
-        color: white;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text);
         text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 0 0 8px 8px;
-        transition: background-color 0.3s;
+        padding: 12px 16px;
+        transition: var(--transition);
+        font-size: 0.9rem;
+        font-weight: 500;
       }
 
       .menu a:hover {
-        background-color: #8b6548;
+        background-color: rgba(107, 79, 54, 0.1);
+        color: var(--primary);
+      }
+
+      .menu a i {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--white);
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin-bottom: 24px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn {
+        background: var(--accent);
+        color: var(--white);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn:hover {
+        background: var(--primary-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 5%;
       }
 
       h2 {
         text-align: center;
-        color: #6b4f36;
-        margin: 30px 0 20px;
+        color: var(--primary);
+        margin: 40px 0 30px;
         font-weight: 600;
+        font-size: 2rem;
+        position: relative;
+      }
+
+      h2::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: var(--accent);
+        margin: 12px auto 0;
+        border-radius: 2px;
+      }
+
+      .section-description {
+        text-align: center;
+        color: var(--text-light);
+        max-width: 700px;
+        margin: 0 auto 40px;
+        font-size: 1rem;
       }
 
       .produk-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 20px;
-        padding: 0 20px 40px;
-        max-width: 900px;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 30px;
+        padding: 0 0 60px;
       }
 
       .produk {
-        background: white;
-        border-radius: 10px;
+        background: var(--white);
+        border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-sm);
         text-align: center;
-        transition: transform 0.2s ease;
+        transition: var(--transition);
         text-decoration: none;
-        color: #333;
+        color: var(--text);
         display: flex;
         flex-direction: column;
-        cursor: pointer;
+        position: relative;
       }
 
       .produk:hover {
-        transform: scale(1.05);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .produk-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--accent);
+        color: var(--white);
+        padding: 4px 10px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        z-index: 1;
+      }
+
+      .produk-img-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
       }
 
       .produk img {
         width: 100%;
-        aspect-ratio: 1 / 1;
+        height: 100%;
         object-fit: cover;
-        border-bottom: 1px solid #ddd;
+        transition: transform 0.5s ease;
       }
 
-      .produk p {
-        margin: 10px 0 5px;
-        font-size: 14px;
+      .produk:hover img {
+        transform: scale(1.05);
+      }
+
+      .produk-content {
+        padding: 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .produk h3 {
+        margin: 8px 0 4px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-dark);
+      }
+
+      .produk .desc {
+        color: var(--text-light);
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        flex: 1;
       }
 
       .produk .harga {
-        color: #6b4f36;
-        font-weight: bold;
-        margin-bottom: 12px;
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+      }
+
+      .produk-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--accent);
+        font-size: 0.9rem;
+      }
+
+      .add-to-cart {
+        background: var(--primary);
+        color: var(--white);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .add-to-cart:hover {
+        background: var(--primary-dark);
+        transform: scale(1.1);
+      }
+
+      .category-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .category-tab {
+        padding: 8px 20px;
+        background: var(--white);
+        border-radius: 50px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid rgba(107, 79, 54, 0.2);
+      }
+
+      .category-tab:hover,
+      .category-tab.active {
+        background: var(--primary);
+        color: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+
+      footer {
+        background: var(--primary-dark);
+        color: var(--white);
+        padding: 40px 5%;
+        text-align: center;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        text-align: left;
+      }
+
+      .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 2px;
+        background: var(--accent);
+        margin-top: 8px;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        display: block;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-column a:hover {
+        color: var(--accent);
+        padding-left: 4px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .social-links a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background: var(--accent);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* Animation classes */
+      .animate-delay-1 {
+        animation-delay: 0.1s;
+      }
+      .animate-delay-2 {
+        animation-delay: 0.2s;
+      }
+      .animate-delay-3 {
+        animation-delay: 0.3s;
+      }
+      .animate-delay-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero {
+          height: 250px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .produk-container {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 12px 5%;
+        }
+
+        .logo {
+          font-size: 1.2rem;
+        }
+
+        .hero {
+          height: 200px;
+        }
+
+        .hero h1 {
+          font-size: 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        .produk-container {
+          grid-template-columns: 1fr;
+        }
+
+        .category-tabs {
+          justify-content: flex-start;
+        }
       }
     </style>
   </head>
   <body>
     <nav>
-      <div class="logo">Jawa Cafe</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="logo">
+        <span>Jawa Cafe</span>
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="profile-icon">
+          <i data-feather="user"></i>
+        </div>
+        <span>☰</span>
+      </div>
       <div class="menu" id="dropdownMenu">
-        <a href="../dashboard/dashboard.html">Home</a>
-        <a href="../profil/profil.html">Profil</a>
+        <a href="../dashboard/dashboard.html">
+          <i data-feather="home"></i>
+          Home
+        </a>
+        <a href="../profil/profil.html">
+          <i data-feather="user"></i>
+          Profil
+        </a>
+        <a href="../pesanan/pesanan.html">
+          <i data-feather="shopping-cart"></i>
+          Pesanan
+        </a>
+        <a href="../landing-page/landing-page.html">
+          <i data-feather="log-out"></i>
+          Keluar
+        </a>
       </div>
     </nav>
 
-    <h2>Menu Kopi Kami</h2>
+    <section class="hero animate__animated animate__fadeIn">
+      <h1>Rasa Kopi Asli Jawa</h1>
+      <p>
+        Nikmati keaslian rasa kopi terbaik dari perkebunan Jawa dengan racikan
+        tradisional modern
+      </p>
+    </section>
 
-    <div class="produk-container">
-      <a
-        href="../pembayaran/pembayaran.html?produk=Espresso&harga=18000"
-        class="produk"
+    <div class="container">
+      <h2 class="animate__animated animate__fadeInUp">Menu Kopi Kami</h2>
+      <p
+        class="section-description animate__animated animate__fadeInUp animate-delay-1"
       >
-        <img src="../img/Donna Jos Sia.jpeg" alt="Espresso" />
-        <p>Espresso</p>
-        <p class="harga">Rp18.000</p>
-      </a>
+        Temukan berbagai pilihan kopi berkualitas tinggi yang disajikan dengan
+        teknik terbaik oleh barista profesional kami.
+      </p>
 
-      <a
-        href="../pembayaran/pembayaran.html?produk=Americano&harga=20000"
-        class="produk"
-      >
-        <img
-          src="../img/aes ; marauders _ sirius black _ padfoot _ ♡.jpeg"
-          alt="Americano"
-        />
-        <p>Americano</p>
-        <p class="harga">Rp20.000</p>
-      </a>
+      <div class="category-tabs">
+        <div class="category-tab active">Semua</div>
+        <div class="category-tab">Espresso</div>
+        <div class="category-tab">Manual Brew</div>
+        <div class="category-tab">Signature</div>
+        <div class="category-tab">Non-Kopi</div>
+      </div>
 
-      <a
-        href="../pembayaran/pembayaran.html?produk=Cappuccino&harga=22000"
-        class="produk"
-      >
-        <img src="../img/download (2).jpeg" alt="Cappuccino" />
-        <p>Cappuccino</p>
-        <p class="harga">Rp22.000</p>
-      </a>
+      <div class="produk-container">
+        <a
+          href="../pembayaran/pembayaran.html?produk=Espresso&harga=18000"
+          class="produk animate__animated animate__fadeInUp animate-delay-1"
+        >
+          <div class="produk-badge">Terlaris</div>
+          <div class="produk-img-container">
+            <img
+              src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Espresso"
+            />
+          </div>
+          <div class="produk-content">
+            <h3>Espresso</h3>
+            <p class="desc">
+              Ekstrak kopi murni dengan crema tebal dan rasa intens
+            </p>
+            <p class="harga">Rp18.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.8
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
 
-      <a
-        href="../pembayaran/pembayaran.html?produk=Latte&harga=23000"
-        class="produk"
-      >
-        <img
-          src="../img/Holiday Spiced Café Au Lait - The Local Palate.jpeg"
-          alt="Latte"
-        />
-        <p>Latte</p>
-        <p class="harga">Rp23.000</p>
-      </a>
+        <a
+          href="../pembayaran/pembayaran.html?produk=Americano&harga=20000"
+          class="produk animate__animated animate__fadeInUp animate-delay-2"
+        >
+          <div class="produk-img-container">
+            <img src="../img/download (3).jpeg" alt="Americano" />
+          </div>
+          <div class="produk-content">
+            <h3>Americano</h3>
+            <p class="desc">
+              Espresso dengan tambahan air panas, rasa lebih ringan
+            </p>
+            <p class="harga">Rp20.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.6
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
 
-      <a
-        href="../pembayaran/pembayaran.html?produk=Mocha&harga=25000"
-        class="produk"
-      >
-        <img src="../img/download (3).jpeg" alt="Mocha" />
-        <p>Mocha</p>
-        <p class="harga">Rp25.000</p>
-      </a>
+        <a
+          href="../pembayaran/pembayaran.html?produk=Cappuccino&harga=22000"
+          class="produk animate__animated animate__fadeInUp animate-delay-3"
+        >
+          <div class="produk-badge">Baru</div>
+          <div class="produk-img-container">
+            <img
+              src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Cappuccino"
+            />
+          </div>
+          <div class="produk-content">
+            <h3>Cappuccino</h3>
+            <p class="desc">
+              Espresso dengan susu steamed dan busa susu lembut
+            </p>
+            <p class="harga">Rp22.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.9
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
 
-      <a
-        href="../pembayaran/pembayaran.html?produk=Kopi%20Tubruk&harga=15000"
-        class="produk"
-      >
-        <img
-          src="../img/Beans Photos - Download Free High-Quality Pictures _ Freepik.jpeg"
-          alt="Kopi Tubruk"
-        />
-        <p>Kopi Tubruk</p>
-        <p class="harga">Rp15.000</p>
-      </a>
+        <a
+          href="../pembayaran/pembayaran.html?produk=Latte&harga=24000"
+          class="produk animate__animated animate__fadeInUp animate-delay-4"
+        >
+          <div class="produk-img-container">
+            <img
+              src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Latte"
+            />
+          </div>
+          <div class="produk-content">
+            <h3>Latte</h3>
+            <p class="desc">
+              Espresso dengan lebih banyak susu steamed dan sedikit busa
+            </p>
+            <p class="harga">Rp24.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.7
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="../pembayaran/pembayaran.html?produk=Mocha&harga=25000"
+          class="produk animate__animated animate__fadeInUp"
+        >
+          <div class="produk-img-container">
+            <img
+              src="https://images.unsplash.com/photo-1568649929103-28ffbefaca1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Mocha"
+            />
+          </div>
+          <div class="produk-content">
+            <h3>Mocha</h3>
+            <p class="desc">Perpaduan espresso, cokelat, dan susu steamed</p>
+            <p class="harga">Rp25.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.8
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="../pembayaran/pembayaran.html?produk=Kopi%20Tubruk&harga=15000"
+          class="produk animate__animated animate__fadeInUp animate-delay-1"
+        >
+          <div class="produk-badge">Tradisional</div>
+          <div class="produk-img-container">
+            <img
+              src="../img/aes ; marauders _ sirius black _ padfoot _ ♡.jpeg"
+              alt="Kopi Tubruk"
+            />
+          </div>
+          <div class="produk-content">
+            <h3>Kopi Tubruk</h3>
+            <p class="desc">
+              Kopi Jawa asli diseduh tradisional dengan gula aren
+            </p>
+            <p class="harga">Rp15.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.9
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="../pembayaran/pembayaran.html?produk=Vietnam%20Drip&harga=22000"
+          class="produk animate__animated animate__fadeInUp animate-delay-2"
+        >
+          <div class="produk-img-container">
+            <img src="../img/download (2).jpeg" alt="Vietnam Drip" />
+          </div>
+          <div class="produk-content">
+            <h3>Vietnam Drip</h3>
+            <p class="desc">
+              Kopi Vietnam dengan teknik tetes dan susu kental manis
+            </p>
+            <p class="harga">Rp22.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.5
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="../pembayaran/pembayaran.html?produk=Matcha%20Latte&harga=23000"
+          class="produk animate__animated animate__fadeInUp animate-delay-3"
+        >
+          <div class="produk-badge">Non-Kopi</div>
+          <div class="produk-img-container">
+            <img
+              src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Matcha Latte"
+            />
+          </div>
+          <div class="produk-content">
+            <h3>Matcha Latte</h3>
+            <p class="desc">Teh matcha Jepang premium dengan susu steamed</p>
+            <p class="harga">Rp23.000</p>
+            <div class="produk-footer">
+              <div class="rating">
+                <i
+                  data-feather="star"
+                  fill="currentColor"
+                  width="14"
+                  height="14"
+                ></i>
+                4.7
+              </div>
+              <button class="add-to-cart">
+                <i data-feather="shopping-cart" width="16" height="16"></i>
+              </button>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
 
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Tentang Kami</h3>
+          <p>
+            Jawa Cafe menghadirkan cita rasa kopi Jawa asli dengan sentuhan
+            modern sejak 2010.
+          </p>
+          <div class="social-links">
+            <a href="#"><i data-feather="facebook"></i></a>
+            <a href="#"><i data-feather="instagram"></i></a>
+            <a href="#"><i data-feather="twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Kontak</h3>
+          <a href="#"
+            ><i data-feather="map-pin"></i> Jl. Jawa No. 123, Yogyakarta</a
+          >
+          <a href="tel:+6281234567890"
+            ><i data-feather="phone"></i> (0812) 3456 7890</a
+          >
+          <a href="mailto:info@jawacafe.com"
+            ><i data-feather="mail"></i> info@jawacafe.com</a
+          >
+        </div>
+        <div class="footer-column">
+          <h3>Jam Buka</h3>
+          <p><strong>Senin-Jumat:</strong> 07.00 - 22.00</p>
+          <p><strong>Sabtu-Minggu:</strong> 08.00 - 23.00</p>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2023 Jawa Cafe. All Rights Reserved.</div>
+    </footer>
+
     <script>
+      // Initialize Feather Icons
+      feather.replace();
+
       function toggleMenu() {
         document.getElementById("dropdownMenu").classList.toggle("show");
       }
@@ -203,6 +886,81 @@
           menu.classList.remove("show");
         }
       });
+
+      // Category tabs functionality
+      document.querySelectorAll(".category-tab").forEach((tab) => {
+        tab.addEventListener("click", function () {
+          document
+            .querySelector(".category-tab.active")
+            .classList.remove("active");
+          this.classList.add("active");
+          // Here you would typically filter products
+        });
+      });
+
+      // Add to cart functionality
+      document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const product = this.closest(".produk");
+          const productName = product.querySelector("h3").textContent;
+          const price = product.querySelector(".harga").textContent;
+
+          // Animation
+          this.innerHTML =
+            '<i data-feather="check" width="16" height="16"></i>';
+          feather.replace();
+          this.style.background = "#4CAF50";
+
+          setTimeout(() => {
+            this.innerHTML =
+              '<i data-feather="shopping-cart" width="16" height="16"></i>';
+            feather.replace();
+            this.style.background = "var(--primary)";
+          }, 1000);
+
+          // In a real app, you would add to cart here
+          console.log(`Added to cart: ${productName} - ${price}`);
+        });
+      });
+
+      // Product click handler
+      document.querySelectorAll(".produk").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          if (e.target.closest(".add-to-cart")) {
+            e.preventDefault();
+            return;
+          }
+
+          const productName = this.querySelector("h3").textContent;
+          const price = this.querySelector(".harga").textContent.replace(
+            /\D/g,
+            ""
+          );
+
+          // Update href with properly encoded parameters
+          this.href = `../pembayaran/pembayaran.html?produk=${encodeURIComponent(
+            productName
+          )}&harga=${price}`;
+        });
+      });
+
+      // Scroll animation
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(".produk");
+        elements.forEach((el, index) => {
+          const elPosition = el.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (elPosition < windowHeight - 100) {
+            el.classList.add("animate__fadeInUp");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", animateOnScroll);
+      window.addEventListener("load", animateOnScroll);
     </script>
   </body>
 </html>
