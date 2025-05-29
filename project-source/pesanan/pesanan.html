@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil - Jawa Cafe</title>
+    <title>Pesanan - Jawa Cafe</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -31,6 +31,7 @@
         background: var(--background-color);
         color: var(--text-color);
         line-height: 1.6;
+        min-height: 100vh;
       }
 
       nav {
@@ -118,78 +119,45 @@
       }
 
       .container {
-        max-width: 500px;
+        max-width: 600px;
         margin: 40px auto;
         background: var(--card-color);
         border-radius: 15px;
         padding: 30px;
         box-shadow: var(--shadow);
         color: var(--text-color);
-      }
-
-      .container h2 {
         text-align: center;
+      }
+
+      .empty-state {
+        padding: 40px 20px;
+      }
+
+      .empty-icon {
+        font-size: 80px;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        opacity: 0.7;
+      }
+
+      .empty-title {
+        font-size: 24px;
         color: var(--primary-color);
-        margin-bottom: 25px;
-        font-size: 28px;
-        position: relative;
-        padding-bottom: 10px;
-      }
-
-      .container h2::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: var(--secondary-color);
-        border-radius: 3px;
-      }
-
-      .info {
-        margin: 20px 0;
-      }
-
-      .info label {
-        font-weight: 600;
-        display: block;
-        margin-bottom: 8px;
-        color: var(--primary-color);
-        font-size: 16px;
-      }
-
-      .info p {
-        margin: 0;
-        background: var(--light-text);
-        padding: 12px 15px;
-        border-radius: 8px;
-        border-left: 4px solid var(--secondary-color);
-      }
-
-      .profile-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 25px;
-      }
-
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid var(--secondary-color);
         margin-bottom: 15px;
-        box-shadow: var(--shadow);
+        font-weight: 600;
       }
 
-      .edit-btn {
-        display: block;
-        width: 100%;
-        padding: 12px;
-        margin-top: 30px;
+      .empty-desc {
+        color: #666;
+        margin-bottom: 30px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .order-btn {
+        display: inline-block;
+        padding: 12px 30px;
         background: var(--primary-color);
         color: white;
         border: none;
@@ -198,15 +166,16 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
+        text-decoration: none;
       }
 
-      .edit-btn:hover {
+      .order-btn:hover {
         background: var(--secondary-color);
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       }
 
-      .edit-btn i {
+      .order-btn i {
         margin-right: 8px;
       }
 
@@ -223,86 +192,63 @@
         .logo {
           font-size: 18px;
         }
+
+        .empty-icon {
+          font-size: 60px;
+        }
+
+        .empty-title {
+          font-size: 20px;
+        }
       }
     </style>
   </head>
   <body>
     <nav>
       <div class="logo">
-        <i data-feather="coffee"></i>
         <span>Jawa Cafe</span>
       </div>
-      <div class="menu-toggle" onclick="toggleMenu()">
-        <div class="profile-icon">
-          <i data-feather="user"></i>
-        </div>
-        <span>☰</span>
-      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
       <div class="menu" id="dropdownMenu">
         <a href="../dashboard/dashboard.html">
-          <i data-feather="home"></i>
-          Home
+          <i class="fas fa-home"></i>
+          <span>Home</span>
         </a>
         <a href="../profil/profil.html">
-          <i data-feather="user"></i>
-          Profil
+          <i class="fas fa-user"></i>
+          <span>Profil</span>
         </a>
         <a href="../pesanan/pesanan.html">
-          <i data-feather="shopping-cart"></i>
-          Pesanan
+          <i class="fas fa-clipboard-list"></i>
+          <span>Pesanan</span>
         </a>
-
-        <a href="../landing-page/landing-page.html">
-          <i data-feather="log-out"></i>
-          Keluar
+        <a href="#">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Keluar</span>
         </a>
       </div>
     </nav>
 
     <div class="container">
-      <div class="profile-header"></div>
-
-      <h2>Profil Pengguna</h2>
-
-      <div class="info">
-        <label>Nama Lengkap</label>
-        <p>Andika Pratama</p>
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-clipboard"></i>
+        </div>
+        <h2 class="empty-title">Belum Ada Pesanan</h2>
+        <p class="empty-desc">
+          Anda belum memiliki pesanan saat ini. Yuk pesan minuman favorit Anda
+          sekarang!
+        </p>
+        <a href="../dashboard/dashboard.html" class="order-btn">
+          <i class="fas fa-utensils"></i>
+          Pesan Sekarang
+        </a>
       </div>
-
-      <div class="info">
-        <label>No. Telepon</label>
-        <p>081234567890</p>
-      </div>
-
-      <div class="info">
-        <label>Email</label>
-        <p>fdlnnaul11@gmail.com</p>
-      </div>
-
-      <div class="info">
-        <label>Bergabung sejak</label>
-        <p>Januari 2023</p>
-      </div>
-
-      <div class="info">
-        <label>Status Member</label>
-        <p>Premium Member</p>
-      </div>
-
-      <button class="edit-btn" onclick="editProfile()">
-        <i class="fas fa-edit"></i>
-        Edit Profil
-      </button>
     </div>
 
     <script>
       function toggleMenu() {
         document.getElementById("dropdownMenu").classList.toggle("show");
-      }
-
-      function editProfile() {
-        alert("Fitur edit profil akan segera tersedia!");
-        // You can implement actual edit functionality here
       }
 
       window.addEventListener("click", function (e) {
@@ -311,16 +257,6 @@
         if (!toggle.contains(e.target) && !menu.contains(e.target)) {
           menu.classList.remove("show");
         }
-      });
-
-      // Add smooth scrolling to all links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
-        });
       });
     </script>
   </body>

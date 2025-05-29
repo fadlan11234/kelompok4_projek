@@ -2,111 +2,645 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Form Pembayaran - Jawa Cafe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran - Jawa Cafe</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
     <style>
+      :root {
+        --primary: #6b4f36;
+        --primary-light: #8b6548;
+        --primary-dark: #4d3826;
+        --secondary: #f5f0e6;
+        --accent: #d4a762;
+        --text: #333333;
+        --text-light: #666666;
+        --white: #ffffff;
+        --success: #4caf50;
+        --error: #f44336;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+        --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: sans-serif;
-        background: #f5f0e6;
-        max-width: 400px;
+        font-family: "Poppins", sans-serif;
+        background: var(--secondary);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      nav {
+        background: var(--primary);
+        color: var(--white);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 5%;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .logo i {
+        color: var(--accent);
+      }
+
+      .back-btn {
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+
+      .container {
+        max-width: 1000px;
         margin: 40px auto;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(107, 79, 54, 0.3);
-        color: #6b4f36;
+        padding: 0 5%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
+
+      @media (min-width: 992px) {
+        .container {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
       h1 {
-        text-align: center;
-        margin-bottom: 25px;
+        color: var(--primary);
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        grid-column: 1 / -1;
       }
+
+      .order-summary,
+      .payment-method {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-title i {
+        color: var(--accent);
+      }
+
+      .product-item {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .product-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .product-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+
+      .product-details {
+        flex: 1;
+      }
+
+      .product-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .product-price {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .summary-row.total {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .payment-options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .payment-option {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .payment-option:hover {
+        border-color: var(--accent);
+      }
+
+      .payment-option.selected {
+        border-color: var(--primary);
+        background: rgba(107, 79, 54, 0.05);
+      }
+
+      .payment-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--secondary);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .payment-icon i {
+        color: var(--primary);
+      }
+
+      .payment-info {
+        flex: 1;
+      }
+
+      .payment-name {
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+
+      .payment-desc {
+        font-size: 0.85rem;
+        color: var(--text-light);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
       label {
         display: block;
-        margin: 15px 0 5px;
-        font-weight: bold;
+        margin-bottom: 8px;
+        font-weight: 500;
       }
+
       input,
-      textarea {
+      select {
         width: 100%;
-        padding: 8px 10px;
-        border: 1px solid #aaa;
-        border-radius: 5px;
-        font-size: 16px;
-        box-sizing: border-box;
-        resize: vertical;
-      }
-      .total-harga {
-        margin: 20px 0;
-        font-size: 20px;
-        font-weight: bold;
-        text-align: center;
-        color: #8b6548;
-      }
-      .btn-pesan {
-        display: block;
-        width: 100%;
-        padding: 12px;
-        background-color: #6b4f36;
-        color: white;
-        border: none;
+        padding: 12px 15px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 8px;
-        font-size: 18px;
+        font-family: "Poppins", sans-serif;
+        transition: var(--transition);
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(107, 79, 54, 0.2);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .btn {
+        background: var(--primary);
+        color: var(--white);
+        border: none;
+        width: 100%;
+        padding: 15px;
+        border-radius: 8px;
+        font-weight: 600;
         cursor: pointer;
-        text-align: center;
-        transition: background-color 0.3s;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
         margin-top: 20px;
       }
-      .btn-pesan:hover {
-        background-color: #8b6548;
+
+      .btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn i {
+        width: 20px;
+        height: 20px;
+      }
+
+      .success-message {
+        display: none;
+        background: rgba(76, 175, 80, 0.1);
+        border: 1px solid var(--success);
+        color: var(--success);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .success-message i {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .success-message h2 {
+        color: var(--success);
+        margin-bottom: 10px;
+      }
+
+      .qr-code {
+        width: 200px;
+        height: 200px;
+        background: var(--white);
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .qr-code img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .product-item {
+          flex-direction: column;
+        }
+
+        .product-img {
+          width: 100%;
+          height: auto;
+          max-height: 150px;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Form Pembayaran</h1>
+    <nav>
+      <div class="logo">
+        <i data-feather="coffee"></i>
+        <span>Jawa Cafe</span>
+      </div>
+      <button class="back-btn" onclick="window.history.back()">
+        <i data-feather="arrow-left"></i>
+        Kembali
+      </button>
+    </nav>
 
-    <form id="formPembayaran">
-      <label for="nama">Nama Pemesan:</label>
-      <input
-        type="text"
-        id="nama"
-        name="nama"
-        placeholder="Masukkan nama Anda"
-        required
-      />
+    <div class="container">
+      <h1>Pembayaran</h1>
 
-      <label for="hp">Nomor HP:</label>
-      <input type="tel" id="hp" name="hp" placeholder="0812xxxxxxx" />
+      <div class="order-summary">
+        <div class="section-title">
+          <i data-feather="shopping-bag"></i>
+          Ringkasan Pesanan
+        </div>
 
-      <label for="alamat">Alamat:</label>
-      <textarea
-        id="alamat"
-        name="alamat"
-        rows="3"
-        placeholder="Masukkan alamat pengiriman"
-      ></textarea>
+        <div id="product-list">
+          <!-- Product items will be dynamically inserted here -->
+        </div>
 
-      <div class="total-harga" id="totalHarga">Total Harga: Rp 50.000</div>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">Rp0</span>
+        </div>
+        <div class="summary-row">
+          <span>Pajak (10%)</span>
+          <span id="tax">Rp0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Pembayaran</span>
+          <span id="total">Rp0</span>
+        </div>
+      </div>
 
-      <button type="submit" class="btn-pesan">Pesan Sekarang</button>
-    </form>
+      <div class="payment-method">
+        <div class="section-title">
+          <i data-feather="credit-card"></i>
+          Metode Pembayaran
+        </div>
+
+        <div class="payment-options">
+          <div class="payment-option selected" data-method="qris">
+            <div class="payment-icon">
+              <i data-feather="smartphone"></i>
+            </div>
+            <div class="payment-info">
+              <div class="payment-name">QRIS</div>
+              <div class="payment-desc">
+                Bayar dengan QRIS melalui aplikasi e-wallet atau mobile banking
+              </div>
+            </div>
+            <i data-feather="check-circle" class="check-icon"></i>
+          </div>
+
+          <div class="payment-option" data-method="gopay">
+            <div class="payment-icon">
+              <i data-feather="smartphone"></i>
+            </div>
+            <div class="payment-info">
+              <div class="payment-name">GoPay</div>
+              <div class="payment-desc">Bayar menggunakan saldo GoPay</div>
+            </div>
+            <i data-feather="check-circle" class="check-icon"></i>
+          </div>
+
+          <div class="payment-option" data-method="ovo">
+            <div class="payment-icon">
+              <i data-feather="smartphone"></i>
+            </div>
+            <div class="payment-info">
+              <div class="payment-name">OVO</div>
+              <div class="payment-desc">Bayar menggunakan saldo OVO</div>
+            </div>
+            <i data-feather="check-circle" class="check-icon"></i>
+          </div>
+
+          <div class="payment-option" data-method="bank-transfer">
+            <div class="payment-icon">
+              <i data-feather="dollar-sign"></i>
+            </div>
+            <div class="payment-info">
+              <div class="payment-name">Transfer Bank</div>
+              <div class="payment-desc">
+                Transfer manual ke rekening BCA/Mandiri/BNI
+              </div>
+            </div>
+            <i data-feather="check-circle" class="check-icon"></i>
+          </div>
+        </div>
+
+        <div id="payment-details">
+          <div class="form-group" id="qris-details">
+            <p>Scan QR code berikut untuk melakukan pembayaran:</p>
+            <div class="qr-code">
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=JAWACAFE-ORDER-123456"
+                alt="QR Code"
+              />
+            </div>
+            <p style="text-align: center; margin-top: 10px; font-size: 0.9rem">
+              QR Code akan kadaluarsa dalam <strong>15:00</strong>
+            </p>
+          </div>
+
+          <div class="form-group" id="gopay-details" style="display: none">
+            <p>
+              Anda akan diarahkan ke aplikasi GoPay untuk menyelesaikan
+              pembayaran.
+            </p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="gopay-phone">Nomor Telepon GoPay</label>
+                <input type="tel" id="gopay-phone" placeholder="08xxxxxxxxxx" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="ovo-details" style="display: none">
+            <p>Masukkan nomor telepon yang terdaftar di OVO:</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ovo-phone">Nomor Telepon OVO</label>
+                <input type="tel" id="ovo-phone" placeholder="08xxxxxxxxxx" />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="form-group"
+            id="bank-transfer-details"
+            style="display: none"
+          >
+            <p>Silakan transfer ke salah satu rekening berikut:</p>
+            <div
+              style="
+                background: #f9f9f9;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 15px 0;
+              "
+            >
+              <p>
+                <strong>Bank BCA</strong><br />
+                1234567890<br />
+                PT. Jawa Cafe Indonesia
+              </p>
+
+              <p style="margin-top: 10px">
+                <strong>Bank Mandiri</strong><br />
+                9876543210<br />
+                PT. Jawa Cafe Indonesia
+              </p>
+
+              <p style="margin-top: 10px">
+                <strong>Bank BNI</strong><br />
+                5678901234<br />
+                PT. Jawa Cafe Indonesia
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="bank-name">Bank Tujuan</label>
+              <select id="bank-name">
+                <option value="">Pilih Bank</option>
+                <option value="bca">BCA</option>
+                <option value="mandiri">Mandiri</option>
+                <option value="bni">BNI</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="transfer-proof">Upload Bukti Transfer</label>
+              <input type="file" id="transfer-proof" />
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" id="pay-button">
+          <i data-feather="credit-card"></i>
+          Bayar Sekarang
+        </button>
+
+        <div class="success-message" id="success-message">
+          <i data-feather="check-circle"></i>
+          <h2>Pembayaran Berhasil!</h2>
+          <p>
+            Terima kasih telah berbelanja di Jawa Cafe. Pesanan Anda sedang
+            diproses.
+          </p>
+          <p>No. Pesanan: <strong>JC-2023-123456</strong></p>
+        </div>
+      </div>
+    </div>
 
     <script>
-      const form = document.getElementById("formPembayaran");
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+      // Initialize Feather Icons
+      feather.replace();
 
-        const nama = form.nama.value.trim();
-        if (!nama) {
-          alert("Nama pemesan harus diisi!");
-          return;
-        }
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const productName = urlParams.get("produk");
+      const productPrice = parseInt(urlParams.get("harga")) || 0;
 
-        // Kamu bisa tambahkan validasi atau pengolahan data di sini
-        alert(`Terima kasih, ${nama}! Pesanan Anda telah diterima.`);
+      // Calculate totals
+      const tax = Math.floor(productPrice * 0.1);
+      const total = productPrice + tax;
 
-        // Misal redirect ke halaman lain setelah submit
-        // window.location.href = 'terima-kasih.html';
+      // Display product and totals
+      document.getElementById("product-list").innerHTML = `
+      <div class="product-item">
+        <img src="https://source.unsplash.com/random/300x300/?coffee,${encodeURIComponent(
+          productName
+        )}" alt="${productName}" class="product-img">
+        <div class="product-details">
+          <div class="product-name">${productName}</div>
+          <div class="product-price">Rp${productPrice.toLocaleString(
+            "id-ID"
+          )}</div>
+        </div>
+      </div>
+    `;
 
-        form.reset();
+      document.getElementById(
+        "subtotal"
+      ).textContent = `Rp${productPrice.toLocaleString("id-ID")}`;
+      document.getElementById("tax").textContent = `Rp${tax.toLocaleString(
+        "id-ID"
+      )}`;
+      document.getElementById("total").textContent = `Rp${total.toLocaleString(
+        "id-ID"
+      )}`;
+
+      // Payment method selection
+      const paymentOptions = document.querySelectorAll(".payment-option");
+      const paymentDetails =
+        document.getElementById("payment-details").children;
+
+      paymentOptions.forEach((option) => {
+        option.addEventListener("click", function () {
+          // Remove selected class from all options
+          paymentOptions.forEach((opt) => opt.classList.remove("selected"));
+
+          // Add selected class to clicked option
+          this.classList.add("selected");
+
+          // Hide all payment details
+          Array.from(paymentDetails).forEach((detail) => {
+            detail.style.display = "none";
+          });
+
+          // Show selected payment details
+          const method = this.getAttribute("data-method");
+          document.getElementById(`${method}-details`).style.display = "block";
+        });
       });
+
+      // Payment button click handler
+      document
+        .getElementById("pay-button")
+        .addEventListener("click", function () {
+          // Show success message
+          document.getElementById("success-message").style.display = "block";
+
+          // Hide payment form
+          this.style.display = "none";
+          document.getElementById("payment-details").style.display = "none";
+
+          // Scroll to success message
+          document
+            .getElementById("success-message")
+            .scrollIntoView({ behavior: "smooth" });
+        });
+
+      // Countdown timer for QR code
+      let timeLeft = 15 * 60; // 15 minutes in seconds
+
+      const updateTimer = () => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+
+        document.querySelector(
+          "#qris-details p:last-child strong"
+        ).textContent = `${minutes.toString().padStart(2, "0")}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.querySelector("#qris-details p:last-child").innerHTML =
+            '<strong style="color: var(--error)">QR Code telah kadaluarsa</strong>';
+        } else {
+          timeLeft--;
+        }
+      };
+
+      const timer = setInterval(updateTimer, 1000);
+      updateTimer();
     </script>
   </body>
 </html>
